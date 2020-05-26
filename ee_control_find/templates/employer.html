@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head oncontextmenu="return false">
+    <meta charset="UTF-8">
+    <title>Job Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href={% static 'find/css/er.css' %}>
+    <link rel="stylesheet" href={% static 'find/css/er2.css' %}>
+</head>
+<body oncontextmenu="return false">
+    <div class="sidenav">
+         <div class="login-main-text" style="margin-top: 80px">
+            <h2>Hello {{ uu }}.<br> Search about you desired CV here.</h2>
+            <p>You can search about job title.</p>
+             <p>You can search about specific employee name.</p><br><br>
+             <h4> <sp style="color: orange">CVs__ </sp> L<img src="{% static 'find/img/love.png' %}" style="height: 25px; width: 30px">VED : <a href="{% url 'loved' %}" target="_blank"><span style="color: orange">{{ lovv.count }}</span></a> </h4><br><br>
+
+
+         </div>
+    </div>
+    <div class="main">
+        <div style="margin-top:20px; margin-bottom: -50px; margin-left: 10px ">
+        {%include 'messages.html'%}
+        </div>
+         <div class="col-md-14 col-sm-14">
+            <div class="login-form" style="margin-top: 30px; margin-bottom: 30px">
+                <div class="container search-table">
+            <div class="search-box">
+                <div class="row">
+                    <div class="col-md-14" style="margin: auto; width: 60%">
+                        <form method="GET" action="{% url 'index' uu %}">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" name="q" placeholder="Search about job title e.g. python" value="{{request.GET.q}}">
+                            <input type="submit" value="Search" style="margin-left: 150px">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="search-list">
+                <h3 style="text-align: center">{{query.count}} Records Found</h3>
+                <table class="table" id="myTable" style="text-align: center">
+                    <tr>
+                        <th>Name</th>
+                        <th>Job Title</th>
+                        <th>Level</th>
+                        <th>CV</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for item in query %}
+                        <tr>
+                            <td>{{ item.username }}</td>
+                            <td>{{ item.job }}</td>
+                            <td>{{ item.level }}</td>
+                            <td><a href="{% url 'read' item.username %}" target="_blank">{{ item.file }}</a></td>
+                            <td><a href="{% url 'love' item.username %}" target="_blank"><p onclick="loveFunction(this)" id="love"><img src="{% static 'find/img/love.png' %}" style="height: 25px; width: 30px"></p></a></td>
+                            <td><a href="{% url 'like' item.username %}" target="_blank"><p onclick="likeFunction(this)" id="like"><img src="{% static 'find/img/like.png' %}" style="height: 25px; width: 30px"></p></a></td>
+                            <td><a href="{% url 'dislike' item.username %}" target="_blank"><p onclick="dislikeFunction(this)" id="dislike"><img src="{% static 'find/img/dislike.png' %}" style="height: 25px; width: 30px"></p></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div>
+               <button type="submit" class="btn btn-black" style="margin-left: 370px"><a href="{% url 'logoutee'  %}">Logout</a></button>
+            </div>
+         </div>
+    </div>
+    <script>
+        function likeFunction(x) {
+          x.style.fontWeight = "bold";
+          x.innerHTML = "<img src=\"{% static 'find/img/like.png' %}\" style=\"height: 25px; width: 30px\"> ✓";
+          y = document.getElementById('love');
+          z = document.getElementById('dislike');
+          y.innerHTML = "<img src=\"{% static 'find/img/love.png' %}\" style=\"height: 25px; width: 30px\">";
+          z.innerHTML = "<img src=\"{% static 'find/img/dislike.png' %}\" style=\"height: 25px; width: 30px\">";
+        }
+        function dislikeFunction(x) {
+          x.style.fontWeight = "bold";
+          x.innerHTML = "<img src=\"{% static 'find/img/dislike.png' %}\" style=\"height: 25px; width: 30px\"> ✓";
+          y = document.getElementById('love');
+          z = document.getElementById('like');
+          y.innerHTML = "<img src=\"{% static 'find/img/love.png' %}\" style=\"height: 25px; width: 30px\">";
+          z.innerHTML = "<img src=\"{% static 'find/img/like.png' %}\" style=\"height: 25px; width: 30px\">";
+        }
+        function loveFunction (x) {
+          x.style.fontWeight = "bold";
+          x.innerHTML = "<img src=\"{% static 'find/img/love.png' %}\" style=\"height: 25px; width: 30px\"> ✓";
+          y = document.getElementById('like');
+          z = document.getElementById('dislike');
+          y.innerHTML = "<img src=\"{% static 'find/img/like.png' %}\" style=\"height: 25px; width: 30px\">";
+          z.innerHTML = "<img src=\"{% static 'find/img/dislike.png' %}\" style=\"height: 25px; width: 30px\">";
+        }
+    </script>
+</body>
+</html>

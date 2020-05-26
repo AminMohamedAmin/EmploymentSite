@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head oncontextmenu="return false">
+    <meta charset="UTF-8">
+    <title>Job Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href={% static 'upload/css/ee.css' %}>
+</head>
+<body oncontextmenu="return false">
+    <div class="sidenav">
+         <div class="login-main-text" style="margin-top: 80px">
+            <h2>Hello {{ uu }} </h2><br>
+            <span>Employers who viewd your CV : {{ vv.count }} </span><br><br>
+             <span>Times which your CV is opened : {{ v.count }} </span><br><br><br>
+             <span><img src="{% static 'find/img/love.png' %}" style="height: 25px; width: 30px"> : {{ lovv.count }} </span><br><br>
+             <span><img src="{% static 'find/img/like.png' %}" style="height: 25px; width: 30px"> : {{ likk.count }} </span><br><br>
+             <span><img src="{% static 'find/img/dislike.png' %}" style="height: 25px; width: 30px"> : {{ dlikk.count }} </span><br><br>
+         </div>
+    </div>
+    <div class="main">
+        <div style="margin-top:20px; margin-bottom: -50px; margin-left: 50px ">
+        {%include 'messages.html'%}
+        </div>
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form" style="margin-top: 70px; margin-bottom: 50px; margin-left: 50px">
+               <form method="post" enctype="multipart/form-data" action="{% url 'logoutee' %}">
+                   {% csrf_token %}
+                   <div class="form-group" style="margin-bottom: 30px">
+                     <label style="font-size: large">Username</label>
+                     <input type="text" class="form-control" placeholder="username" value="{{ uu }}" name="USERNAME" readonly>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 30px">
+                     <label style="font-size: large">Job title</label>
+                     <input type="text" class="form-control" placeholder="job title" name="JOBTITLE" value="{{ n.job }}" required>
+                  </div>
+                   <div class="form-group" style="margin-bottom: 30px">
+                     <label style="font-size: large">Level you have reached as a junior</label>
+                     <input type="number" class="form-control" placeholder="your level" min="0" max="10" name="LEVEL" value="{{ n.level }}" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 20px">
+                     <label style="font-size: large">your CV</label><br>
+                      <a style="color: blue" href="#">{{ n.file }}</a><br>
+                  </div>
+                  <button type="submit" class="btn btn-black" style="margin-left: 100px">Logout</button>
+                   <button type="submit" class="btn btn-danger" style="margin-left: 20px"><a href="{% url 'delete' uu %}">Delete</a></button>
+               </form>
+            </div>
+         </div>
+    </div>
+</body>
+</html>

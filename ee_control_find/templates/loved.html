@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>loved CVs</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <table class="table" id="myTable" style="text-align: center; margin: auto">
+        {% for item in loved %}
+            <tr>
+                <td>{{ item.employee }}</td>
+                <td><a href="{% url 'read' item.employee %}" target="_blank">{{ item.cv }}</a></td>
+                <td>{{ item.job }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+

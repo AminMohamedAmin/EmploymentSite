@@ -1,0 +1,26 @@
+{%extends 'index.html' %}
+
+{% block nav %}
+    <h2>Hello {{ request.user.username }}</h2><br><hr>
+    <h3>Send your CV to job contact email with job title.</h3><hr><br>
+
+{% endblock %}
+
+{%block main%}
+	<div class="col-sm-6 col-sm-offset-0" style="width: 730px">
+		<h1>{{instance.job_title}}</h1>
+        <p style="font-size: large">{{instance.puplish}}</p>
+        <h3>Company:</h3>
+        <p>{{instance.company}}</p>
+        <h3>Requirements:</h3>
+		<p>{{instance.requirements}}</p>
+        <h3>Info: </h3>
+		<p>{{instance.content}}</p>
+        <h3>Contact: </h3>
+		<p>{{instance.contact}}</p><br><hr>
+        <div style="width: 600px">
+            <div style="float: left; margin-left: 10px"><a style="float: left" href="{% url 'home' %}"><input style="height: 50px; width: 150px" type="submit" value="Back to Posts Page"></a></div>
+            <div style="float: left; margin-left: 10px"><a style="float: left" href="{% url 'logouteee' %}"><input style="height: 50px; width: 150px" type="submit" value="Logout"></a></div>
+	    </div>
+    </div>
+{%endblock%}

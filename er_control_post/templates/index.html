@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head oncontextmenu="return false">
+	<meta charset="UTF-8">
+	<title>{{views_title}}</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/ss.css' %}">
+    <link rel="stylesheet" href={% static 'css/eee.css' %}>
+
+</head>
+<body oncontextmenu="return false">
+    <div class="sidenav">
+                <div class="login-main-text" style="margin-top: 80px">
+		{%block nav%}
+
+        {%endblock nav%}
+                </div>
+            </div>
+
+        <div class="main">
+            <div style="margin-top:20px; margin-bottom: -50px; margin-left: 50px ">
+            {%include 'messages.html'%}
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="login-form" style="margin-top: 70px; margin-bottom: 50px; margin-left: 50px">
+                    {%block main%}
+
+                    {%endblock main%}
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

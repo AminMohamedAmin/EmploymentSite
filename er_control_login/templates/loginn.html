@@ -1,0 +1,160 @@
+{% load static %}
+<!doctype html>
+<html lang="en" class="h-100" oncontextmenu="return false">
+  <head oncontextmenu="return false">
+    <meta charset="utf-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href={% static 'login/css/st0.css' %}>
+    <link rel="stylesheet" href={% static 'login/css/st.css' %}>
+  </head>
+  <body class="d-flex flex-column h-100" style="margin: auto" oncontextmenu="return false">
+
+
+    {# header  #}
+
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 90px">
+          <h1 style="color: azure; margin: auto; margin-top: 5px">JuniorJob <span style="font-size: large">Find a junior employer! Find a junior job! in any computer science fields.</span> </h1>
+            <a style="float: right" href="{% url 'backhomee' %}"><img class="w3-image" src="{% static 'login/img/back.png' %}" alt="back to home page" width="40" height="40"></a>
+      </nav>
+    </header>
+
+
+    {# main  #}
+
+
+    <main role="main" class="flex-shrink-0" style="margin-top: 100px">
+
+
+        {# Login  #}
+
+
+          <div class="container login-container" style=" width: 600px; float: left; margin-left: 70px;">
+            <div class="row" style="margin-left: 50px">
+
+
+                {# Employer Login  #}
+
+
+                <div class="col-md-6 login-form-1">
+                    <form method="post" action="{% url 'loginerr'%}">
+                        {% csrf_token %}
+                        <h3>Employer Login</h3>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your UserName *" value="" name="U_name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" value="" name="Pass" />
+                        </div>
+                        <div class="form-group" style="margin-left: 60px">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group" style="margin-left: 30px">
+                            <a href="#" class="btnForgetPwd">Forget Password?</a>
+                        </div>
+                    </form>
+                </div>
+
+
+                {# Employee Login  #}
+
+
+                <div class="col-md-6 login-form-2">
+                    <form method="post" action="{% url 'logineee' %}">
+                        {% csrf_token %}
+                        <h3>Employee Login</h3>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your UserName *" value="" name="u_Name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" value="" name="pAss" />
+                        </div>
+                        <div class="form-group" style="margin-left: 60px">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group" style="margin-left: 30px">
+                            <a href="#" class="btnForgetPwd">Forget Password?</a>
+                        </div>
+                    </form>
+                </div>
+
+
+                {# message #}
+
+
+                <div style="margin: auto; margin-top:20px">
+                    {%include 'messages.html'%}
+                </div>
+
+
+                {# Login Info  #}
+
+
+                <div style="margin-top:20px; text-align: center; margin-left: 70px">
+                    <h4> Signup then Login. </h4>
+                    <h6> Login as an Employer and post a job to Employees. </h6>
+                    <h6> Login as an Employee and Find a good job.  </h6>
+                    <h5> Good Luck.  </h5>
+                </div>
+            </div>
+        </div>
+
+
+        {# Signup  #}
+
+
+        <div class="container login-container" style=" width: 600px; float: left; margin-left: 70px">
+            <div class="row" style="margin-left: 50px">
+
+
+                {# Signup  #}
+
+
+                <div class="col-md-9 login-form-1">
+                    <form method="post" action="{% url 'upsighnn' %}">
+                        {% csrf_token %}
+                        <h3>Signup</h3>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your f_name *" value="" name="f_name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your l_name *" value="" name="l_name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your username *" value="" name="u_name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your email *" value="" name="eml" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" value="" name="pass" />
+                        </div>
+{#                        <div class="form-group">#}
+{#                            <select name="role">#}
+{#                                <option>employee</option>#}
+{#                                <option>employer</option>#}
+{#                            </select>#}
+{#                        </div>#}
+                        <div class="form-group" style="margin-left: 100px">
+                            <input type="submit" class="btnSubmit" value="Signup"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    {# footer  #}
+
+
+    <footer class="footer mt-auto py-3 fixe">
+        <div class="container bg-dark " style="text-align: center">
+            <span class="text-muted" >copyright to developer: ameensadek99@gmail.com</span>
+        </div>
+    </footer>
+  </body>
+</html>

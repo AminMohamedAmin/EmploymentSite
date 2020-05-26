@@ -1,0 +1,16 @@
+{%extends 'index.html' %}
+
+{% block nav %}
+    <h2>Hello {{ request.user.username }}</h2><br><hr>
+    <h3>Welcome to JuniorJob</h3><hr><br>
+    <h4>Leave your available job here and be sure to put an email contact.</h4><br>
+    <h4>Wait many CVs with your job title in email.</h4><br>
+{% endblock %}
+
+{%block main%}
+	<div class="col-sm-6 col-sm-offset-3" style="margin-left: 100px; text-align: center">
+		<a style="font-size: larger" href="{% url 'form' %}"><input style="width: 400px; height: 200px; padding: 100px" type="submit" value="Add Post"></a><br><br>
+        <a style="font-size: larger" href="{% url 'list' %}"><input style="width: 400px; height: 200px; padding: 100px" type="submit" value="My Posts"></a>
+	</div>
+{%endblock%}
+

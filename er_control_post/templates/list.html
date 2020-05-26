@@ -1,0 +1,42 @@
+{%extends 'index.html' %}
+
+{% block nav %}
+    <h2>Hello {{ request.user.username }}</h2><br><hr>
+    <h3>Here, you will find all posts you posted.</h3><hr>
+    <h3>Check any post.</h3><hr>
+    <h3>Delete the post that you no longer need.</h3><hr>
+    <h3>Add another post if you want.</h3><hr>
+{% endblock %}
+
+{%block main%}
+    <div  style="width: 700px" class="col-sm-40">
+        <div style="float: right">
+		    <button type="submit" class="btn btn-black"><a href="{% url 'logouteee'  %}">Logout</a></button>
+		</div>
+		<div>
+		    <h1>Posts</h>
+		</div>
+        <div style="float: right"><a style="float: left" href="{% url 'form' %}"><input type="submit" value="Add Post"></a></div>
+		<form style="width: 500px" method="GET" action="">
+			<input style="width: 350px" type="text" name="q" placeholder="Search post .." value="{{request.GET.q}}">
+			<input type="submit" value="Search">
+            <a style="margin-left: 20px" href="{% url 'list' %}">All Posts</a>
+		</form>
+		<br>
+		{%for obj in queryset%}
+			<div class="row" style="width: 730px">
+			  <div class="col-md-12">
+			    <div class="thumbnail">
+			      <div class="caption">
+			        <h3><a href="{{obj.get_url}}">{{obj.job_title}}</a></h3>
+			        <span>{{obj.puplish}}</span>
+			        <p>User: {{obj.user}}</p>
+			        <p>{{obj.company}}</p>
+			        <p><a href="{{obj.get_url}}" class="btn btn-primary" role="button">View</a></p>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		{%endfor%}
+	</div>
+{%endblock%}
